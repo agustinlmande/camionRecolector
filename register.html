@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro | Camión Recolector</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <div class="login-container">
+        <h2>Registrarse</h2>
+        <form method="POST" action="register.php">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" name="nombre" required>
+
+            <label for="email">Correo electrónico</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password">Contraseña</label>
+            <input type="password" id="password" name="password" required>
+
+            <label for="rol">Rol</label>
+            <select id="rol" name="rol" required>
+                <option value="conductor">Conductor</option>
+                <option value="supervisor">Supervisor</option>
+                <option value="admin">Administrador</option>
+            </select>
+
+            <button type="submit">Registrarme</button>
+        </form>
+        <div style="text-align:center; margin-top:1em;">
+            <a href="login.html">¿Ya tienes cuenta? Inicia sesión</a>
+        </div>
+    </div>
+</body>
+</html>

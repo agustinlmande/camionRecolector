@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Login | Camión Recolector</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <div class="login-container">
+        <h2>Iniciar Sesión</h2>
+        <form method="POST" action="login.php">
+            <label for="email">Correo electrónico</label>
+            <input type="email" id="email" name="email" required autocomplete="username">
+
+            <label for="password">Contraseña</label>
+            <input type="password" id="password" name="password" required autocomplete="current-password">
+
+            <button type="submit">Ingresar</button>
+        </form>
+        <div style="text-align:center; margin-top:1em;">
+            <button onclick="window.location.href='register.html'">Registrarme</button>
+        </div>
+        <!-- Aquí puedes mostrar mensajes de error si lo deseas -->
+        <!-- <div class="error">Usuario o contraseña incorrectos</div> -->
+    </div>
+</body>
+</html>

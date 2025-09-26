@@ -1,0 +1,37 @@
+<?php
+session_start();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $email = $_POST['email'] ?? '';
+    $password = $_POST['password'] ?? '';
+
+    $usuariosFile = __DIR__ . '/usuarios.json';
+    if (!file_exists($usuariosFile)) {
+        echo "<script>alert('No hay usuarios registrados');window.location.href='login.html';</script>";
+        exit;
+    }
+
+    $usuarios = json_decode(file_get_contents($usuariosFile), true) ?? [];
+    $usuarioEncontrado = null;
+
+    foreach ($usuarios as $usuario) {
+        if ($usuario['email'] === $email && password_verify($password, $usuario['password_hash'])) {
+            $usuarioEncontrado = $usuario;
+            break;
+        }
+    }
+
+    if ($usuarioEncontrado) {
+        $_SESSION['usuario'] = [
+            'nombre' => $usuarioEncontrado['nombre'],
+            'email' => $usuarioEncontrado['email'],
+            'rol' => $usuarioEncontrado['rol']
+        ];
+        header('Location: dashboard.php');
+        exit;
+    } else {
+        echo "<script>alert('Usuario o contraseña incorrectos');window.location.href='login.html';</script>";
+        exit;
+    }
+}
+?>
