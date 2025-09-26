@@ -51,4 +51,64 @@ class Analytics {
 
         return $alertas;
     }
+
+     // Cuenta recorridos realizados hoy
+    private function contarRecorridosHoy(array $recorridos): int {
+        $hoy = date('Y-m-d');
+        return count(array_filter($recorridos, fn($r) => isset($r['fecha']) && $r['fecha'] === $hoy));
+    }
+
+    // Suma residuos recolectados en el mes actual
+    private function calcularResiduosMes(array $recorridos): float {
+        $mes = date('Y-m');
+        $total = 0;
+        foreach ($recorridos as $r) {
+            if (isset($r['fecha']) && strpos($r['fecha'], $mes) === 0 && isset($r['residuos_kg'])) {
+                $total += $r['residuos_kg'];
+            }
+        }
+        return $total;
+    }
+
+    // Calcula eficiencia promedio de los camiones
+    private function calcularEficiencia(array $camiones, array $recorridos): float {
+        if (count($camiones) === 0) return 0.0;
+        $eficiencias = [];
+        foreach ($camiones as $c) {
+            $id = method_exists($c, 'getId') ? $c->getId() : (isset($c['id']) ? $c['id'] : null);
+            $recorridosCamion = array_filter($recorridos, fn($r) => isset($r['camion_id']) && $r['camion_id'] == $id);
+            $totalRecorridos = count($recorridosCamion);
+            $eficiencia = $totalRecorridos > 0 ? array_sum(array_map(fn($r) => $r['eficiencia'] ?? 1, $recorridosCamion)) / $totalRecorridos : 1;
+            $eficiencias[] = $eficiencia;
+        }
+        return count($eficiencias) ? round(array_sum($eficiencias) / count($eficiencias), 2) : 1.0;
+    }
+
+    // Identifica las rutas más productivas
+    private function identificarRutasProductivas(array $recorridos): array {
+        $rutas = [];
+        foreach ($recorridos as $r) {
+            if (isset($r['ruta_id'], $r['residuos_kg'])) {
+                if (!isset($rutas[$r['ruta_id']])) $rutas[$r['ruta_id']] = 0;
+                $rutas[$r['ruta_id']] += $r['residuos_kg'];
+            }
+        }
+        arsort($rutas);
+        return array_slice($rutas, 0, 3, true); // Top 3 rutas
+    }
+
+    // Cuenta mantenimientos pendientes
+    private function contarMantenimientosPendientes(): int {
+        if (!method_exists($this->gestor, 'obtenerMantenimientos')) return 0;
+        $mantenimientos = $this->gestor->obtenerMantenimientos();
+        return count(array_filter($mantenimientos, fn($m) => isset($m['estado']) ? $m['estado'] === 'pendiente' : (method_exists($m, 'getEstado') && $m->getEstado() === 'pendiente')));
+    }
+
+    // Simulación de creación de PDF
+    private function crearPDF(): string {
+        // Aquí iría la lógica real usando una librería como FPDF o TCPDF
+        return 'reporte_analytics.pdf';
+    }
 }
+
+
