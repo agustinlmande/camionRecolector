@@ -1,3 +1,4 @@
+<?php 
 // clases/RutaOptimizada.php
 class RutaOptimizada {
     private array $puntos_recoleccion;
@@ -41,3 +42,5 @@ class RutaOptimizada {
         return $instrucciones;
     }
 }
+
+

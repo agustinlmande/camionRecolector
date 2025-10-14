@@ -1,4 +1,6 @@
 // api/camiones.php
+AIzaSyBIDmdkqF2z5r3EXylJSsSFedWg_DrHY6A
+<?php
 header('Content-Type: application/json');
 
 try {

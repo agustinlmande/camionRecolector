@@ -1,0 +1,74 @@
+[
+    {
+        "id": 1,
+        "fecha_creacion": "2025-10-14 02:25:55",
+        "conductor": "Juan",
+        "camion": "AX902",
+        "origen": "Salta 2951, S3000CMK Santa Fe de la Vera Cruz, Santa Fe, Argentina",
+        "destino": "Av. Gral. López 3055, S3000DCO Santa Fe de la Vera Cruz, Santa Fe, Argentina",
+        "hora_salida": "2025-10-14 00:25:55",
+        "estado": "pendiente",
+        "puntos_recoleccion": [
+            {
+                "direccion": "Juan de Garay, Ciudad de Santa Fe, Provincia de Santa Fe, Argentina",
+                "estimado_kg": 25,
+                "tipo_residuo": "general",
+                "prioridad": "normal"
+            },
+            {
+                "direccion": "Estadio 15 de Abril, Avenida López y Planes, Ciudad de Santa Fe, Provincia de Santa Fe, Argentina",
+                "estimado_kg": 25,
+                "tipo_residuo": "general",
+                "prioridad": "normal"
+            }
+        ],
+        "metricas": {
+            "total_puntos": 4,
+            "puntos_recoleccion": 2,
+            "distancia_total_km": 29.02,
+            "tiempo_total_minutos": 79.6,
+            "tiempo_total_horas": 1.33,
+            "hora_salida": "00:25",
+            "hora_estimada_llegada": "01:44",
+            "eficiencia_estimada": 0
+        },
+        "instrucciones": [
+            {
+                "orden": 0,
+                "direccion": "Salta 2951, S3000CMK Santa Fe de la Vera Cruz, Santa Fe, Argentina",
+                "tipo": "origen",
+                "estimado_residuos": 0,
+                "instruccion": "🚛 Iniciar ruta desde: Salta 2951, S3000CMK Santa Fe de la Vera Cruz, Santa Fe, Argentina",
+                "tiempo_estimado": 0,
+                "distancia_acumulada": 0
+            },
+            {
+                "orden": 1,
+                "direccion": "Juan de Garay, Ciudad de Santa Fe, Provincia de Santa Fe, Argentina",
+                "tipo": "recoleccion",
+                "estimado_residuos": 25,
+                "instruccion": "📦 Punto 1: Recolectar residuos en Juan de Garay, Ciudad de Santa Fe, Provincia de Santa Fe, Argentina (Estimado: 25 kg)",
+                "tiempo_estimado": 25.1,
+                "distancia_acumulada": 10.45
+            },
+            {
+                "orden": 2,
+                "direccion": "Estadio 15 de Abril, Avenida López y Planes, Ciudad de Santa Fe, Provincia de Santa Fe, Argentina",
+                "tipo": "recoleccion",
+                "estimado_residuos": 25,
+                "instruccion": "📦 Punto 2: Recolectar residuos en Estadio 15 de Abril, Avenida López y Planes, Ciudad de Santa Fe, Provincia de Santa Fe, Argentina (Estimado: 25 kg)",
+                "tiempo_estimado": 47.7,
+                "distancia_acumulada": 17.8
+            },
+            {
+                "orden": 3,
+                "direccion": "Av. Gral. López 3055, S3000DCO Santa Fe de la Vera Cruz, Santa Fe, Argentina",
+                "tipo": "destino",
+                "estimado_residuos": 0,
+                "instruccion": "🏁 Finalizar ruta en: Av. Gral. López 3055, S3000DCO Santa Fe de la Vera Cruz, Santa Fe, Argentina",
+                "tiempo_estimado": 79.6,
+                "distancia_acumulada": 29.02
+            }
+        ]
+    }
+]

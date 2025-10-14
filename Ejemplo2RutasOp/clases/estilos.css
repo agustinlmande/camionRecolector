@@ -1,0 +1,598 @@
+:root {
+  /* Paleta de Colores Profesional y Suave */
+  --primary-color: #4C70FC; /* Azul moderno y vibrante (botón principal) */
+  --secondary-color: #6D90FF; /* Tono más claro para hover */
+  --accent-color: #7952b3; /* Púrpura/Morado (basado en el gradiente de fondo) */
+  
+  /* Colores Neutros y de Superficie */
+  --surface-light: #ffffff;
+  --surface-soft: #f4f6fa; /* Fondo ligero para secciones */
+  --text-dark: #1f2937;
+  --text-medium: #4b5563;
+  --border-light: #e5e7eb;
+  
+  /* Sombras y Profundidad */
+  --shadow-main: 0 10px 30px rgba(0, 0, 0, 0.1);
+  --shadow-subtle: 0 4px 10px rgba(0, 0, 0, 0.05);
+  
+  /* Accesibilidad y Foco */
+  --focus-ring: 0 0 0 4px rgba(76, 112, 252, 0.3);
+  
+  /* Espaciado y Tipografía */
+  --spacing-unit: 1rem; /* 16px */
+  --border-radius-large: 16px;
+  --border-radius-medium: 10px;
+  --font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* Reset y configuración base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Manteniendo el gradiente original */
+  min-height: 100vh;
+  color: var(--text-dark);
+  line-height: 1.6; /* Mejora la legibilidad */
+}
+
+/* Título principal */
+h1 {
+  text-align: center;
+  color: var(--surface-light);
+  margin: 3rem 0 2rem;
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* ------------------------------------------------------------------
+  LAYOUT Y CONTENEDORES
+-------------------------------------------------------------------*/
+
+.contenedor-principal {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 32px; /* Aumento de espacio para claridad */
+  padding: 1.5rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  min-height: calc(100vh - 5rem); /* Ajustado para el margen del h1 */
+}
+
+/* Panel de formulario */
+.contenedor-formulario {
+  background: var(--surface-light);
+  border-radius: var(--border-radius-large);
+  padding: 32px;
+  box-shadow: var(--shadow-main);
+  border: none; /* Eliminamos el borde de opacidad para un look más limpio */
+}
+
+/* Mapa */
+#mapa {
+  height: 70vh; /* Altura más cómoda */
+  min-height: 400px;
+  width: 100%;
+  border-radius: var(--border-radius-large);
+  box-shadow: var(--shadow-main);
+  border: 4px solid var(--surface-light); /* Borde blanco para resaltar */
+  overflow: hidden;
+}
+
+/* ------------------------------------------------------------------
+  FORMULARIOS Y CAMPOS
+-------------------------------------------------------------------*/
+
+.campo {
+  margin-bottom: 1.5rem; /* Espaciado ajustado */
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--text-dark);
+  font-size: 0.95rem;
+  transition: color 0.3s ease;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid var(--border-light);
+  border-radius: var(--border-radius-medium);
+  font-size: 1rem;
+  color: var(--text-dark);
+  background: var(--surface-light);
+  /* Transiciones suaves para interacción */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="text"]:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: var(--focus-ring);
+}
+
+input::placeholder {
+  color: var(--text-medium);
+  opacity: 0.6;
+}
+
+/* ------------------------------------------------------------------
+  SECCIÓN DE PARADAS
+-------------------------------------------------------------------*/
+
+.seccion-paradas {
+  background: var(--surface-soft);
+  border-radius: var(--border-radius-medium);
+  padding: 24px;
+  margin: 2rem 0;
+  border: 1px solid var(--border-light); /* Borde sutil */
+}
+
+.seccion-paradas h3 {
+  color: var(--accent-color);
+  margin-bottom: 0.75rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.seccion-paradas p {
+    color: var(--text-medium);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.contenedor-paradas {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 1rem;
+}
+
+.parada-item {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  background: var(--surface-light);
+  padding: 8px;
+  border-radius: var(--border-radius-medium);
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-subtle);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.parada-item:hover {
+  box-shadow: 0 6px 15px rgba(76, 112, 252, 0.1);
+  transform: translateY(-2px);
+}
+
+.parada-item input {
+  flex: 1;
+  margin: 0;
+  border: 1px solid var(--border-light);
+  padding: 10px 14px;
+  border-radius: 6px;
+  transition: border-color 0.3s ease;
+}
+
+.parada-item input:focus {
+  border-color: var(--accent-color);
+  box-shadow: none;
+}
+
+.boton-eliminar {
+  background: #f77070;
+  color: var(--surface-light);
+  border: none;
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  line-height: 1;
+  font-size: 1.1rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.boton-eliminar:hover {
+  background: #e65a5a;
+  transform: scale(1.05);
+}
+
+/* ------------------------------------------------------------------
+  BOTONES
+-------------------------------------------------------------------*/
+
+.boton-principal,
+.boton-secundario {
+  /* Propiedades comunes */
+  width: 100%;
+  padding: 14px 24px;
+  border-radius: var(--border-radius-medium);
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  text-align: center;
+  /* Transiciones para animaciones suaves */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+/* Botón Principal (Acción primaria) */
+.boton-principal {
+  background: var(--primary-color);
+  color: var(--surface-light);
+  border: none;
+  margin-top: 1.5rem;
+  box-shadow: 0 8px 15px rgba(76, 112, 252, 0.3);
+}
+
+.boton-principal:hover {
+  background: var(--secondary-color);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 20px rgba(76, 112, 252, 0.4);
+}
+
+.boton-principal:active {
+  transform: translateY(0);
+}
+
+.boton-principal:focus {
+    outline: none;
+    box-shadow: var(--focus-ring);
+}
+
+/* Botón Secundario (Acciones secundarias) */
+.boton-secundario {
+  background: var(--surface-light);
+  color: var(--text-dark);
+  border: 1px solid var(--border-light);
+  flex: 1; /* Permite que los botones dentro del flexbox compartan espacio */
+  box-shadow: var(--shadow-subtle);
+  padding: 10px 15px; /* Más compacto que el principal */
+}
+
+.boton-secundario:hover {
+  background: var(--surface-soft);
+  border-color: var(--primary-color);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+  transform: translateY(-1px);
+}
+
+.boton-secundario:focus {
+    outline: none;
+    box-shadow: var(--focus-ring);
+}
+
+/* Estilos de botones dentro de la sección de paradas */
+.seccion-paradas > div:last-child {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+/* ------------------------------------------------------------------
+  NOTIFICACIONES Y PANEL DE DIRECCIONES
+-------------------------------------------------------------------*/
+
+#panelNotificaciones {
+    margin-top: 1.5rem;
+}
+
+.notificacion {
+  padding: 15px;
+  border-radius: var(--border-radius-medium);
+  margin-bottom: 1rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.5s ease-out; /* Animación de desvanecimiento/aparición */
+}
+
+.notificacion.error {
+  background: #fde6e6; /* Rojo suave */
+  color: #c94a4a;
+  border: 1px solid #f6d2d2;
+}
+
+.notificacion.error::before {
+  content: "⚠️";
+  font-size: 1.3rem;
+}
+
+.notificacion.exito {
+  background: #e6fde6; /* Verde suave */
+  color: #4a9c53;
+  border: 1px solid #d2f6d2;
+}
+
+.notificacion.exito::before {
+  content: "✅";
+  font-size: 1.3rem;
+}
+
+.notificacion.info {
+  background: #d1ecf1;
+  color: #0c5460;
+  border: 1px solid #bee5eb;
+}
+
+.notificacion.info::before {
+  content: "ℹ️";
+  font-size: 1.2rem;
+}
+
+/* ===== ESTILOS PARA PANELES DE MÉTRICAS E INSTRUCCIONES ===== */
+/* Archivo: index.php - Paneles de métricas optimizadas e instrucciones detalladas */
+
+.panel-oculto {
+  display: none;
+}
+
+/* Panel de métricas optimizadas */
+#panelMetricas {
+  background: #f8f9fa;
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 20px;
+  border: 2px solid #e9ecef;
+}
+
+#panelMetricas h3 {
+  color: #495057;
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+  border-bottom: 2px solid #007bff;
+  padding-bottom: 8px;
+}
+
+/* Grid de métricas */
+.metricas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin: 15px 0;
+}
+
+.metrica-card {
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.metrica-card h4 {
+  margin: 0 0 5px 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.metrica-card p {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/* Colores específicos para cada métrica */
+.metrica-distancia {
+  background: #e8f5e8;
+  color: #2d5a2d;
+}
+
+.metrica-tiempo {
+  background: #e8f4fd;
+  color: #1e3a8a;
+}
+
+.metrica-eficiencia {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.metrica-puntos {
+  background: #f3e8ff;
+  color: #7c3aed;
+}
+
+/* Panel de horarios */
+.panel-horarios {
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 15px;
+}
+
+.panel-horarios h4 {
+  margin: 0 0 10px 0;
+  color: #495057;
+  font-size: 1rem;
+}
+
+.panel-horarios p {
+  margin: 5px 0;
+  font-size: 0.9rem;
+}
+
+/* Panel de instrucciones detalladas */
+#panelInstrucciones {
+  background: #f8f9fa;
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 20px;
+  border: 2px solid #e9ecef;
+}
+
+#panelInstrucciones h3 {
+  color: #495057;
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+  border-bottom: 2px solid #28a745;
+  padding-bottom: 8px;
+}
+
+/* Contenedor de instrucciones con scroll */
+.instrucciones-contenedor {
+  max-height: 300px;
+  overflow-y: auto;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+}
+
+/* Item de instrucción individual */
+.instruccion-item {
+  display: flex;
+  align-items: flex-start;
+  padding: 10px;
+  border-bottom: 1px solid #e9ecef;
+  transition: background-color 0.2s ease;
+}
+
+.instruccion-item:nth-child(even) {
+  background: #f8f9fa;
+}
+
+.instruccion-item:hover {
+  background: #e9ecef;
+}
+
+/* Número de orden */
+.instruccion-numero {
+  background: #007bff;
+  color: white;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+/* Contenido de la instrucción */
+.instruccion-contenido {
+  flex: 1;
+}
+
+.instruccion-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.instruccion-icono {
+  font-size: 1.2rem;
+  margin-right: 8px;
+}
+
+.instruccion-direccion {
+  color: #495057;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.instruccion-texto {
+  margin: 5px 0;
+  color: #6c757d;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.instruccion-metricas {
+  display: flex;
+  gap: 15px;
+  font-size: 0.8rem;
+  color: #6c757d;
+  margin-top: 5px;
+}
+
+.instruccion-metrica {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Responsive para paneles */
+@media (max-width: 768px) {
+  .metricas-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  
+  .instruccion-item {
+    padding: 8px;
+  }
+  
+  .instruccion-numero {
+    width: 25px;
+    height: 25px;
+    font-size: 0.8rem;
+    margin-right: 10px;
+  }
+  
+  .instruccion-metricas {
+    flex-direction: column;
+    gap: 5px;
+  }
+}
+
+/* Estilo para el panel de direcciones de Google Maps */
+#panelDirecciones {
+  margin-top: 2rem;
+  padding: 1rem;
+  background: var(--surface-soft);
+  border-radius: var(--border-radius-medium);
+  border: 1px solid var(--border-light);
+}
+
+/* Ocultar elementos específicos del UI de Google Maps que no son necesarios */
+#panelDirecciones h2,
+#panelDirecciones a[href^="https://maps.google.com/"],
+#panelDirecciones img[src*="google_logo"] {
+  display: none !important;
+}
+
+
+/* ------------------------------------------------------------------
+  DISEÑO RESPONSIVE (Móvil Primero)
+-------------------------------------------------------------------*/
+
+@media (max-width: 1024px) {
+    .contenedor-principal {
+        grid-template-columns: 1fr; /* Columna única en pantallas más pequeñas */
+        gap: 2rem;
+        padding: 1rem;
+        min-height: auto;
+    }
+
+    /* Orden de los elementos en móvil: Mapa debajo del formulario */
+    .contenedor-formulario {
+        order: 1;
+    }
+
+    #mapa {
+        order: 2;
+        height: 50vh; /* Mapa más pequeño en móvil */
+        margin-top: 1rem;
+    }
+
+    h1 {
+        font-size: 2rem;
+        margin: 2rem 0 1.5rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .seccion-paradas > div:last-child {
+        flex-direction: column; /* Botones de paradas apilados en pantallas muy pequeñas */
+    }
+}
